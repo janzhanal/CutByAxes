@@ -3,6 +3,10 @@
 import sys, getopt
 from PIL import Image
 
+#potreba dopsat zakladni help, mozna i dodelat cestu, kam se nasklada narezany obrazek
+#pouziti: python3 crop.py cesta_k_obrazku cesta_k_template
+#template: obsahuje pomerne vzdalenosti na osach, nadefinuji si sami
+
 def main():
     tiff = sys.argv[1]
     templates = sys.argv[2]
@@ -26,8 +30,8 @@ def get_template (template_paths):
 """
 Crop one box from whole image
 """
-def crop (tiff_path, imwidth, imheight, templ, x_unit, y_unit):
-    print (imwidth, imheight)
+def crop (tiff_path, im_width, im_height, templ, x_unit, y_unit):
+    print (im_width, im_height) #debug
     top = 0
     left = 0
     opened_image = Image.open(tiff_path)
@@ -46,16 +50,16 @@ def crop (tiff_path, imwidth, imheight, templ, x_unit, y_unit):
         left = stepx
         
         
-    return "zatim nic"
+    return
 
 """
 Get main unit (image size / template size)
 """
-def transfer (imwidth,imheight,templ):
+def transfer (im_width,im_height,templ):
     x_size = len(templ[0])
     y_size = len(templ[1])
-    x_unit = imwidth // int(templ[0][x_size-1])
-    y_unit = imheight // int(templ[1][y_size-1])
+    x_unit = im_width // int(templ[0][x_size-1])
+    y_unit = im_height // int(templ[1][y_size-1])
     return (x_unit, y_unit)
 
 if __name__ == "__main__":
