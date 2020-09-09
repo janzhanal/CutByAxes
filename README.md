@@ -1,2 +1,2 @@
 # CutByAxes
-Cutting imeage per defined template
+Cutting image per defined template
